@@ -1,6 +1,4 @@
-import { just, Maybe, nothing } from "maybeasy";
-
-export type State = Ready | Error | Loading;
+export type State = Ready | Error | Loading | OpenModal;
 
 interface Ready {
   kind: "ready";
@@ -14,8 +12,16 @@ interface Loading {
   kind: "loading";
 }
 
+interface OpenModal {
+  kind: "open-modal";
+}
+
 export const ready = (): Ready => ({
   kind: "ready",
+});
+
+export const openModal = (): OpenModal => ({
+  kind: "open-modal",
 });
 
 export const error = (): Error => ({

@@ -17,9 +17,11 @@ class Reactions extends ReactionComponent<Store, State, Props> {
         store.ready();
         break;
       case "ready":
+        console.log(state);
         console.log("ready");
         break;
       case "error":
+      case "open-modal":
         break;
       default:
         assertNever(state);

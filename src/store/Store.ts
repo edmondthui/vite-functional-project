@@ -1,6 +1,7 @@
 import { assertNever } from "@kofno/piper";
-import { action, observable } from "mobx";
-import { error, loading, ready, State } from "./Types";
+import { just, Maybe, nothing } from "maybeasy";
+import { action, computed, observable } from "mobx";
+import { error, loading, ready, State, openModal } from "./Types";
 
 class Store {
   @observable
@@ -10,6 +11,7 @@ class Store {
   ready = () => {
     switch (this.state.kind) {
       case "loading":
+      case "open-modal":
         this.state = ready();
         break;
       case "ready":
@@ -25,8 +27,27 @@ class Store {
     switch (this.state.kind) {
       case "ready":
       case "loading":
+      case "open-modal":
         this.state = error();
+        break;
       case "error":
+        break;
+      default:
+        assertNever(this.state);
+    }
+  };
+
+  @action
+  openModal = () => {
+    switch (this.state.kind) {
+      case "ready":
+        console.log("open modal");
+        this.state = openModal();
+        console.log(this.state);
+        break;
+      case "loading":
+      case "error":
+      case "open-modal":
         break;
       default:
         assertNever(this.state);
