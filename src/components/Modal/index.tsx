@@ -1,9 +1,8 @@
-import { fromBool } from "@execonline-inc/maybe-adapter";
 import { Button, Dialog } from "evergreen-ui";
 import { observer } from "mobx-react";
 import ConnectorStore from "../../connectorStore/Store";
 import Store from "../../store/Store";
-import QRCodeModal from "algorand-walletconnect-qrcode-modal";
+import algowallet from "../../assets/algorandwallet.svg";
 
 interface Props {
   store: Store;
@@ -25,6 +24,7 @@ const Modal: React.FC<Props> = ({ store, connectorStore }) => {
               connectorStore.connect();
             }}
           >
+            <img src={algowallet} className="object-cover" />
             <span>Algorand Wallet</span>
           </Button>
         </Dialog>
