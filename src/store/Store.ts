@@ -1,7 +1,6 @@
 import { assertNever } from "@kofno/piper";
-import { just, Maybe, nothing } from "maybeasy";
-import { action, computed, observable } from "mobx";
-import { error, loading, ready, State, openModal } from "./Types";
+import { action, observable } from "mobx";
+import { error, loading, openModal, ready, State } from "./Types";
 
 class Store {
   @observable

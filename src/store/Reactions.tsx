@@ -1,5 +1,5 @@
 import { assertNever } from "@kofno/piper";
-import ReactionComponent, { RCProps } from "./ReactionComponent";
+import ReactionComponent, { RCProps } from "../utils/ReactionComponent";
 import { observer } from "mobx-react";
 import Store from "./Store";
 import { State } from "./Types";

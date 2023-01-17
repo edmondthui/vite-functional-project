@@ -1,11 +1,5 @@
-import {
-  comparer,
-  IReactionDisposer,
-  IReactionOptions,
-  IReactionPublic,
-  reaction,
-} from "mobx";
-import * as React from "react";
+import { comparer, IReactionDisposer, IReactionOptions, IReactionPublic, reaction } from 'mobx';
+import * as React from 'react';
 
 export interface ReactState {}
 
