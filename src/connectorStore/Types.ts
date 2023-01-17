@@ -1,6 +1,6 @@
 import WalletConnect from "@walletconnect/client";
 
-export type State = Ready | Error | Loading;
+export type State = Ready | Error | Loading | Connecting | Connected;
 
 interface Ready {
   kind: "ready";
@@ -15,6 +15,17 @@ interface Loading {
   kind: "loading";
 }
 
+interface Connecting {
+  kind: "connecting";
+  connector: WalletConnect;
+}
+
+interface Connected {
+  kind: "connected";
+  connector: WalletConnect;
+  account: string;
+}
+
 export const ready = (connector: WalletConnect): Ready => ({
   kind: "ready",
   connector,
@@ -26,4 +37,18 @@ export const error = (): Error => ({
 
 export const loading = (): Loading => ({
   kind: "loading",
+});
+
+export const connecting = (state: Ready): Connecting => ({
+  ...state,
+  kind: "connecting",
+});
+
+export const connected = (
+  state: Connecting | Connected,
+  account: string
+): Connected => ({
+  ...state,
+  kind: "connected",
+  account: account,
 });

@@ -2,8 +2,7 @@ import { assertNever } from "@kofno/piper";
 import WalletConnect from "@walletconnect/client";
 import { just, Maybe, nothing } from "maybeasy";
 import { action, computed, observable } from "mobx";
-import { error, loading, ready, State } from "./Types";
-import QRCodeModal from "algorand-walletconnect-qrcode-modal";
+import { connected, connecting, error, loading, ready, State } from "./Types";
 
 class ConnectorStore {
   @observable
@@ -13,10 +12,12 @@ class ConnectorStore {
   ready = (connector: WalletConnect) => {
     switch (this.state.kind) {
       case "loading":
+      case "connected":
         this.state = ready(connector);
         break;
       case "ready":
       case "error":
+      case "connecting":
         break;
       default:
         assertNever(this.state);
@@ -28,9 +29,11 @@ class ConnectorStore {
     switch (this.state.kind) {
       case "ready":
       case "loading":
+      case "connected":
         this.state = error();
         break;
       case "error":
+      case "connecting":
         break;
       default:
         assertNever(this.state);
@@ -41,8 +44,27 @@ class ConnectorStore {
   connect = () => {
     switch (this.state.kind) {
       case "ready":
-        QRCodeModal.open(this.state.connector.uri, null);
+        this.state = connecting(this.state);
+
         break;
+      case "loading":
+      case "error":
+      case "connected":
+      case "connecting":
+        break;
+      default:
+        assertNever(this.state);
+    }
+  };
+
+  @action
+  connected = (account: string) => {
+    switch (this.state.kind) {
+      case "connecting":
+      case "connected":
+        this.state = connected(this.state, account);
+        break;
+      case "ready":
       case "loading":
       case "error":
         break;
@@ -55,6 +77,8 @@ class ConnectorStore {
   get connector(): Maybe<WalletConnect> {
     switch (this.state.kind) {
       case "ready":
+      case "connected":
+      case "connecting":
         return just(this.state.connector);
       case "loading":
       case "error":

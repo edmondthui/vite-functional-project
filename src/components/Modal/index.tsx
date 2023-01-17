@@ -20,11 +20,16 @@ const Modal: React.FC<Props> = ({ store, connectorStore }) => {
           onCloseComplete={() => store.ready()}
         >
           <Button
+            className="w-full"
             onClick={() => {
               connectorStore.connect();
+              store.ready();
             }}
           >
-            <img src={algowallet} className="bg-slate-900" />
+            <img
+              src={algowallet}
+              className="flex-initial items-start align-middle h-full px-1"
+            />
             <span>Algorand Wallet</span>
           </Button>
         </Dialog>
