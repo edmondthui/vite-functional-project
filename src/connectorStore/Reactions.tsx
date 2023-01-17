@@ -39,10 +39,9 @@ class ConnectorReactions extends ReactionComponent<
           console.log(error);
           console.log("on connect");
           QRCodeModal.close();
-          console.log(payload);
           const { account } = payload.params[0];
-          console.log(account);
           store.connected(account);
+          console.log(state.connector);
         });
         state.connector.on("disconnect", (error, payload) => {
           console.log(error);
