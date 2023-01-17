@@ -30,7 +30,7 @@ class App extends React.Component<Props> {
           justifyContent={"center"}
           backgroundColor="DarkSeaGreen"
         >
-          <Header store={this.store} />
+          <Header connectorStore={this.connectorStore} store={this.store} />
           <Body />
           {/* add this to reaction later */}
           <Modal store={this.store} connectorStore={this.connectorStore} />

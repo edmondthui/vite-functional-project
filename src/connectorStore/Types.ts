@@ -23,7 +23,7 @@ interface Connecting {
 interface Connected {
   kind: "connected";
   connector: WalletConnect;
-  account: string;
+  account: any;
 }
 
 export const ready = (connector: WalletConnect): Ready => ({
@@ -39,14 +39,14 @@ export const loading = (): Loading => ({
   kind: "loading",
 });
 
-export const connecting = (state: Ready): Connecting => ({
+export const connecting = (state: Ready | Connecting): Connecting => ({
   ...state,
   kind: "connecting",
 });
 
 export const connected = (
   state: Connecting | Connected,
-  account: string
+  account: any
 ): Connected => ({
   ...state,
   kind: "connected",

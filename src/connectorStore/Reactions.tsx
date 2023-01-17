@@ -10,7 +10,7 @@ interface Props extends RCProps<ConnectorStore> {
   store: ConnectorStore;
 }
 
-const connectProps = {
+export const connectProps = {
   bridge: "https://bridge.walletconnect.org",
   qrCodeModal: QRCodeModal,
 };
@@ -36,13 +36,16 @@ class ConnectorReactions extends ReactionComponent<
         break;
       case "connecting":
         state.connector.on("connect", (error, payload) => {
+          console.log(error);
           console.log("on connect");
           QRCodeModal.close();
           console.log(payload);
           const { account } = payload.params[0];
+          console.log(account);
           store.connected(account);
         });
         state.connector.on("disconnect", (error, payload) => {
+          console.log(error);
           console.log("on disconnect");
           store.ready(state.connector);
         });

@@ -1,13 +1,15 @@
 import { Pane, Select, Text } from "evergreen-ui";
 import { observer } from "mobx-react";
+import ConnectorStore from "../../connectorStore/Store";
 import Store from "../../store/Store";
 import Wallet from "./Wallet";
 
 interface Props {
+  connectorStore: ConnectorStore;
   store: Store;
 }
 
-const Header: React.FC<Props> = ({ store }) => (
+const Header: React.FC<Props> = ({ connectorStore, store }) => (
   <Pane
     display="flex"
     width="65%"
@@ -21,7 +23,7 @@ const Header: React.FC<Props> = ({ store }) => (
     <div>
       <Select width="100%" paddingLeft={16}></Select>
     </div>
-    <Wallet store={store} />
+    <Wallet connectorStore={connectorStore} store={store} />
   </Pane>
 );
 
