@@ -24,7 +24,7 @@ const Modal: React.FC<Props> = ({ store, connectorStore }) => {
               connectorStore.connect();
             }}
           >
-            <img src={algowallet} className="object-cover" />
+            <img src={algowallet} className="bg-slate-900" />
             <span>Algorand Wallet</span>
           </Button>
         </Dialog>
