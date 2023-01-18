@@ -1,6 +1,6 @@
 # Algorand Wallet
 
-This project uses Vite, Typescript, CooperTS, and Tailwind to connect to a Algorand Wallet.
+This project uses Vite, Typescript, CooperTS, and Tailwind to connect to an Algorand Wallet.
 
 ![algo](https://developer.algorand.org/docs/imgs/walletconnect-establishing-connection.png)
 
