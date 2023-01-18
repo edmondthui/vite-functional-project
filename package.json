@@ -2,12 +2,15 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
+  "homepage": "http://edmondhui.com/vite-functional-project",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@execonline-inc/maybe-adapter": "^4.7.0",
@@ -18,6 +21,7 @@
     "algosdk": "^2.0.0",
     "buffer": "^6.0.3",
     "evergreen-ui": "^6.13.3",
+    "gh-pages": "^4.0.0",
     "maybeasy": "^5.0.0",
     "mobx": "^4.15.7",
     "mobx-react": "^5.2.8",

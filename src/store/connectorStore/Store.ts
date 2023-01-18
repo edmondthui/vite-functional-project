@@ -2,7 +2,7 @@ import { assertNever } from "@kofno/piper";
 import WalletConnect from "@walletconnect/client";
 import { just, Maybe, nothing } from "maybeasy";
 import { action, computed, observable } from "mobx";
-import { ChainType, IAssetData } from "../../utils/api/Types";
+import { IAssetData } from "../../utils/api/Types";
 import { connectProps } from "./Reactions";
 import {
   connected,
