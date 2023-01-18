@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://edmondhui.com/vite-functional-project",
+  "homepage": "https://edmondhui.com/vite-functional-project",
   "type": "module",
   "scripts": {
     "dev": "vite",
