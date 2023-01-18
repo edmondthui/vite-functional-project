@@ -1,6 +1,6 @@
 import { Button, Dialog } from "evergreen-ui";
 import { observer } from "mobx-react";
-import ConnectorStore from "../../connectorStore/Store";
+import ConnectorStore from "../../store/connectorStore/Store";
 import Store from "../../store/Store";
 import algowallet from "../../assets/algorandwallet.svg";
 

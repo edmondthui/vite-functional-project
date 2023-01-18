@@ -46,6 +46,7 @@
   width: 2rem;
   height: 2rem;
   margin: var(--space-xxxl) auto;
+  margin-top: 3rem
 }
 
 .loading-icon span {

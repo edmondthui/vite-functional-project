@@ -1,12 +1,15 @@
 import { assertNever } from "@kofno/piper";
 import { just, Maybe, nothing } from "maybeasy";
 import { action, computed, observable } from "mobx";
+import ConnectorStore from "./connectorStore/Store";
 import { AlgoChain, ChainType } from "../utils/api/Types";
 import { error, loading, openModal, ready, setChain, State } from "./Types";
 
 class Store {
   @observable
   state: State = loading();
+
+  readonly connectorStore = new ConnectorStore();
 
   @action
   ready = () => {
@@ -58,9 +61,10 @@ class Store {
   setChain = (chain: AlgoChain) => {
     switch (this.state.kind) {
       case "ready":
-        console.log(chain);
         this.state = setChain(chain);
-        console.log(this.state);
+        this.connectorStore.connector.map((connector) =>
+          this.connectorStore.connected(connector)
+        );
         break;
       case "loading":
       case "error":

@@ -1,7 +1,7 @@
 import WalletConnect from "@walletconnect/client";
 import { Button } from "evergreen-ui";
 import { observer } from "mobx-react";
-import ConnectorStore from "../../connectorStore/Store";
+import ConnectorStore from "../../store/connectorStore/Store";
 import Store from "../../store/Store";
 
 interface Props {
@@ -25,7 +25,10 @@ const Wallet: React.FC<Props> = ({ connectorStore, store }) =>
           .map((connector) => (
             <>
               <div className="align-middle p-2">{account}</div>
-              <Button onClick={() => disconnect(connector, connectorStore)}>
+              <Button
+                marginY="auto"
+                onClick={() => disconnect(connector, connectorStore)}
+              >
                 Disconnect
               </Button>
             </>

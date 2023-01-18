@@ -4,7 +4,7 @@ import { just } from "maybeasy";
 import { observer } from "mobx-react";
 import React from "react";
 import Task from "taskarian";
-import ConnectorStore from "../../connectorStore/Store";
+import ConnectorStore from "../../store/connectorStore/Store";
 import Store from "../../store/Store";
 import { getAccountAssets } from "../../utils/api/api";
 import { ChainType } from "../../utils/api/Types";
@@ -50,10 +50,9 @@ const Body: React.FC<Props> = ({ connectorStore, store }) => {
           borderRadius={3}
           marginX="auto"
           justifyContent="center"
-          alignItems="center"
           display="flex"
         >
-          <LoadingIcon />;
+          <LoadingIcon />
         </Pane>
       );
     case "connected-with-assets":

@@ -5,8 +5,7 @@ import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
-import ConnectorReactions from "./connectorStore/Reactions";
-import ConnectorStore from "./connectorStore/Store";
+import ConnectorReactions from "./store/connectorStore/Reactions";
 import Reactions from "./store/Reactions";
 import Store from "./store/Store";
 
@@ -14,7 +13,6 @@ interface Props {}
 
 class App extends React.Component<Props> {
   store = new Store();
-  connectorStore = new ConnectorStore();
 
   render() {
     return (
@@ -30,12 +28,18 @@ class App extends React.Component<Props> {
           justifyContent={"center"}
           backgroundColor="DarkSeaGreen"
         >
-          <Header connectorStore={this.connectorStore} store={this.store} />
-          <Body connectorStore={this.connectorStore} store={this.store} />
-          <Modal store={this.store} connectorStore={this.connectorStore} />
+          <Header
+            connectorStore={this.store.connectorStore}
+            store={this.store}
+          />
+          <Body connectorStore={this.store.connectorStore} store={this.store} />
+          <Modal
+            store={this.store}
+            connectorStore={this.store.connectorStore}
+          />
           <Reactions store={this.store} fireImmediately={true} />
           <ConnectorReactions
-            store={this.connectorStore}
+            store={this.store.connectorStore}
             fireImmediately={true}
           />
         </Pane>

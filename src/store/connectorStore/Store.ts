@@ -2,7 +2,7 @@ import { assertNever } from "@kofno/piper";
 import WalletConnect from "@walletconnect/client";
 import { just, Maybe, nothing } from "maybeasy";
 import { action, computed, observable } from "mobx";
-import { ChainType, IAssetData } from "../utils/api/Types";
+import { ChainType, IAssetData } from "../../utils/api/Types";
 import { connectProps } from "./Reactions";
 import {
   connected,
@@ -78,11 +78,11 @@ class ConnectorStore {
       case "connecting":
       case "connected":
       case "loading":
+      case "connected-with-assets":
         this.state = connected(connector);
         break;
       case "ready":
       case "error":
-      case "connected-with-assets":
         break;
       default:
         assertNever(this.state);

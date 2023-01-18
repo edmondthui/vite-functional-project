@@ -2,7 +2,7 @@ import { assertNever } from "@kofno/piper";
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "algorand-walletconnect-qrcode-modal";
 import { observer } from "mobx-react";
-import ReactionComponent, { RCProps } from "../utils/ReactionComponent";
+import ReactionComponent, { RCProps } from "../../utils/ReactionComponent";
 import ConnectorStore from "./Store";
 import { State } from "./Types";
 

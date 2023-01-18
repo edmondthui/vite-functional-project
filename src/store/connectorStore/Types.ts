@@ -1,5 +1,5 @@
 import WalletConnect from "@walletconnect/client";
-import { IAssetData } from "../utils/api/Types";
+import { IAssetData } from "../../utils/api/Types";
 
 export type State =
   | Ready

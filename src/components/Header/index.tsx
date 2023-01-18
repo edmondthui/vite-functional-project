@@ -1,6 +1,6 @@
 import { Pane, Select, Text } from "evergreen-ui";
 import { observer } from "mobx-react";
-import ConnectorStore from "../../connectorStore/Store";
+import ConnectorStore from "../../store/connectorStore/Store";
 import Store from "../../store/Store";
 import { AlgoChain } from "../../utils/api/Types";
 import Wallet from "./Wallet";

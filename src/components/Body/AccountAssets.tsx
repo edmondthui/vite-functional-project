@@ -1,7 +1,8 @@
 import { observer } from "mobx-react";
 import React from "react";
-import ConnectorStore from "../../connectorStore/Store";
+import ConnectorStore from "../../store/connectorStore/Store";
 import Store from "../../store/Store";
+import AssetRow from "./AssetRow";
 
 interface Props {
   connectorStore: ConnectorStore;
@@ -13,7 +14,7 @@ const AccountAssets: React.FC<Props> = ({ connectorStore, store }) => (
     <>
       <h2 className={"pt-6 text-xl font-bold"}>Account Balance</h2>
       {connectorStore.assets
-        .map((assets) => <>assets</>)
+        .map((assets) => <AssetRow assets={assets} />)
         .getOrElse(() => (
           <></>
         ))}
