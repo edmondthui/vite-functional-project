@@ -1,7 +1,8 @@
 import { assertNever } from "@kofno/piper";
-import { action, observable } from "mobx";
-import { AlgoChain } from "../utils/api/Types";
-import { error, loading, openModal, ready, State, setChain } from "./Types";
+import { just, Maybe, nothing } from "maybeasy";
+import { action, computed, observable } from "mobx";
+import { AlgoChain, ChainType } from "../utils/api/Types";
+import { error, loading, openModal, ready, setChain, State } from "./Types";
 
 class Store {
   @observable
@@ -12,7 +13,7 @@ class Store {
     switch (this.state.kind) {
       case "loading":
       case "open-modal":
-        this.state = ready();
+        this.state = ready(this.state);
         break;
       case "ready":
       case "error":
@@ -57,7 +58,9 @@ class Store {
   setChain = (chain: AlgoChain) => {
     switch (this.state.kind) {
       case "ready":
+        console.log(chain);
         this.state = setChain(chain);
+        console.log(this.state);
         break;
       case "loading":
       case "error":
@@ -67,6 +70,21 @@ class Store {
         assertNever(this.state);
     }
   };
+
+  @computed
+  get chainType(): Maybe<ChainType> {
+    switch (this.state.kind) {
+      case "ready":
+        console.log(this.state.chain);
+        return just({ type: this.state.chain });
+      case "loading":
+      case "error":
+      case "open-modal":
+        return nothing();
+      default:
+        assertNever(this.state);
+    }
+  }
 }
 
 export default Store;

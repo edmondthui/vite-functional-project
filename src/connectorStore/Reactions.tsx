@@ -52,6 +52,7 @@ class ConnectorReactions extends ReactionComponent<
         connect(state.connector);
         break;
       case "connected":
+      case "connected-with-assets":
         break;
       case "error":
         break;

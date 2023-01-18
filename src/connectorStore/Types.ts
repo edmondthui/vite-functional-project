@@ -1,6 +1,13 @@
 import WalletConnect from "@walletconnect/client";
+import { IAssetData } from "../utils/api/Types";
 
-export type State = Ready | Error | Loading | Connecting | Connected;
+export type State =
+  | Ready
+  | Error
+  | Loading
+  | Connecting
+  | Connected
+  | ConnectedWithAssets;
 
 interface Ready {
   kind: "ready";
@@ -28,6 +35,15 @@ interface Connected {
   peerId: string;
 }
 
+interface ConnectedWithAssets {
+  kind: "connected-with-assets";
+  connector: WalletConnect;
+  accounts: string[];
+  chainId: number;
+  peerId: string;
+  assets: IAssetData[];
+}
+
 export const ready = (connector: WalletConnect): Ready => ({
   kind: "ready",
   connector,
@@ -52,4 +68,13 @@ export const connected = (connector: WalletConnect): Connected => ({
   accounts: connector.accounts,
   chainId: connector.chainId,
   peerId: connector.peerId,
+});
+
+export const connectedWithAssets = (
+  state: Connected,
+  assets: IAssetData[]
+): ConnectedWithAssets => ({
+  ...state,
+  kind: "connected-with-assets",
+  assets,
 });

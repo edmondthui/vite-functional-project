@@ -1,14 +1,14 @@
-import { Button, Pane } from "evergreen-ui";
+import { Pane } from "evergreen-ui";
 import { observer } from "mobx-react";
 import React from "react";
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
-import Reactions from "./store/Reactions";
-import Store from "./store/Store";
 import ConnectorReactions from "./connectorStore/Reactions";
 import ConnectorStore from "./connectorStore/Store";
+import Reactions from "./store/Reactions";
+import Store from "./store/Store";
 
 interface Props {}
 

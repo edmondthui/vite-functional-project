@@ -21,10 +21,11 @@ const Header: React.FC<Props> = ({ connectorStore, store }) => (
     marginTop={"2%"}
   >
     <Text alignSelf="center">Connected to: </Text>
-    <div className={"align-middle"}>
+    <div className="flex">
       <Select
-        width="100%"
-        paddingLeft={16}
+        padding={4}
+        marginY={"auto"}
+        alignSelf={"middle"}
         onChange={(event) => store.setChain(event.target.value as AlgoChain)}
       >
         <option value="testnet">Testnet</option>

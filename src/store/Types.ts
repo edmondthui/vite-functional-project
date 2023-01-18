@@ -13,6 +13,7 @@ interface Error {
 
 interface Loading {
   kind: "loading";
+  chain: AlgoChain;
 }
 
 interface OpenModal {
@@ -20,9 +21,9 @@ interface OpenModal {
   chain: AlgoChain;
 }
 
-export const ready = (): Ready => ({
+export const ready = (state: OpenModal | Loading): Ready => ({
+  ...state,
   kind: "ready",
-  chain: "testnet",
 });
 
 export const openModal = (state: Ready): OpenModal => ({
@@ -36,6 +37,7 @@ export const error = (): Error => ({
 
 export const loading = (): Loading => ({
   kind: "loading",
+  chain: "testnet",
 });
 
 export const setChain = (chain: AlgoChain): Ready => ({
