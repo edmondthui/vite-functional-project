@@ -12,7 +12,7 @@ const addDecimals = (number: string, decimals: number): number =>
 const AccountAssets: React.FC<Props> = ({ assets }) => (
   <>
     {assets.map((asset) => (
-      <div>{addDecimals(String(asset.amount), asset.decimals)}</div>
+      <div>{addDecimals(String(asset.amount), asset.decimals)} Algo</div>
     ))}
   </>
 );

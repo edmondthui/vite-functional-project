@@ -26,7 +26,7 @@ class App extends React.Component<Props> {
           left={0}
           position={"absolute"}
           justifyContent={"center"}
-          backgroundColor="DarkSeaGreen"
+          backgroundColor="#d1deea"
         >
           <Header
             connectorStore={this.store.connectorStore}
