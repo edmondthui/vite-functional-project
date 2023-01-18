@@ -23,7 +23,9 @@ interface Connecting {
 interface Connected {
   kind: "connected";
   connector: WalletConnect;
-  account: any;
+  accounts: string[];
+  chainId: number;
+  peerId: string;
 }
 
 export const ready = (connector: WalletConnect): Ready => ({
@@ -44,11 +46,10 @@ export const connecting = (state: Ready | Connecting): Connecting => ({
   kind: "connecting",
 });
 
-export const connected = (
-  state: Connecting | Connected,
-  account: any
-): Connected => ({
-  ...state,
+export const connected = (connector: WalletConnect): Connected => ({
   kind: "connected",
-  account: account,
+  connector,
+  accounts: connector.accounts,
+  chainId: connector.chainId,
+  peerId: connector.peerId,
 });

@@ -1,6 +1,7 @@
 import { assertNever } from "@kofno/piper";
 import { action, observable } from "mobx";
-import { error, loading, openModal, ready, State } from "./Types";
+import { AlgoChain } from "../utils/api/Types";
+import { error, loading, openModal, ready, State, setChain } from "./Types";
 
 class Store {
   @observable
@@ -41,8 +42,22 @@ class Store {
     switch (this.state.kind) {
       case "ready":
         console.log("open modal");
-        this.state = openModal();
-        console.log(this.state);
+        this.state = openModal(this.state);
+        break;
+      case "loading":
+      case "error":
+      case "open-modal":
+        break;
+      default:
+        assertNever(this.state);
+    }
+  };
+
+  @action
+  setChain = (chain: AlgoChain) => {
+    switch (this.state.kind) {
+      case "ready":
+        this.state = setChain(chain);
         break;
       case "loading":
       case "error":

@@ -31,11 +31,8 @@ class App extends React.Component<Props> {
           backgroundColor="DarkSeaGreen"
         >
           <Header connectorStore={this.connectorStore} store={this.store} />
-          <Body />
-          {/* add this to reaction later */}
+          <Body connectorStore={this.connectorStore} store={this.store} />
           <Modal store={this.store} connectorStore={this.connectorStore} />
-          {/* for debuggint state  */}
-          <Button onClick={() => console.log(this.store.state)}>Test</Button>
           <Reactions store={this.store} fireImmediately={true} />
           <ConnectorReactions
             store={this.connectorStore}

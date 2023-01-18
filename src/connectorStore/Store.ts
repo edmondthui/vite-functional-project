@@ -61,14 +61,14 @@ class ConnectorStore {
   };
 
   @action
-  connected = (account: any) => {
+  connected = (connector: WalletConnect) => {
     switch (this.state.kind) {
       case "connecting":
       case "connected":
-        this.state = connected(this.state, account);
+      case "loading":
+        this.state = connected(connector);
         break;
       case "ready":
-      case "loading":
       case "error":
         break;
       default:
@@ -92,10 +92,10 @@ class ConnectorStore {
   }
 
   @computed
-  get account(): Maybe<any> {
+  get account(): Maybe<string> {
     switch (this.state.kind) {
       case "connected":
-        return just(this.state.account);
+        return just(this.state.accounts[0]);
       case "ready":
       case "connecting":
       case "loading":

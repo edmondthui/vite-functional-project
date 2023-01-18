@@ -30,32 +30,28 @@ class ConnectorReactions extends ReactionComponent<
     const { store } = this.props;
     switch (state.kind) {
       case "loading":
-        store.ready(new WalletConnect(connectProps));
+        const walletConnect = new WalletConnect(connectProps);
+        console.log(walletConnect);
+        walletConnect.connected
+          ? store.connected(walletConnect)
+          : store.ready(walletConnect);
         break;
       case "ready":
         break;
       case "connecting":
         state.connector.on("connect", (error, payload) => {
-          console.log(error);
-          console.log("on connect");
           QRCodeModal.close();
-          const { account } = payload.params[0];
-          store.connected(account);
-          console.log(state.connector);
+          store.connected(state.connector);
         });
         state.connector.on("disconnect", (error, payload) => {
-          console.log(error);
-          console.log("on disconnect");
           store.ready(state.connector);
         });
         state.connector.on("session_update", (error, payload) => {
-          store.connected(payload.params[0]);
+          store.connected(state.connector);
         });
         connect(state.connector);
         break;
       case "connected":
-        console.log(state.account);
-        console.log("connected");
         break;
       case "error":
         break;
