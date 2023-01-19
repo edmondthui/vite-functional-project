@@ -39,14 +39,15 @@ class ConnectorReactions extends ReactionComponent<
       case "ready":
         break;
       case "connecting":
-        state.connector.on("connect", (error, payload) => {
+        state.connector.on("connect", () => {
           QRCodeModal.close();
           store.connected(state.connector);
         });
-        state.connector.on("disconnect", (error, payload) => {
+        state.connector.on("disconnect", () => {
           store.ready(state.connector);
         });
-        state.connector.on("session_update", (error, payload) => {
+        state.connector.on("session_update", () => {
+          console.log("session_update");
           store.connected(state.connector);
         });
         connect(state.connector);
